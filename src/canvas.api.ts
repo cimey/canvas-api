@@ -6,10 +6,25 @@ export class CanvasApi implements IAwake {
 
   private _ctx!: CanvasRenderingContext2D;
   private _canvas!: HTMLCanvasElement;
+  private _elem!: HTMLElement;
   /**
    *
    */
-  constructor(private _size: Vector2D) { }
+  constructor(private _size: Vector2D, elementId: string) {
+    if(!elementId || elementId === null){
+      this._elem = document.body;
+
+    }
+    const element = document.getElementById(elementId);
+    if(!element){
+      throw("Element not found");
+    }
+
+    this._elem = element;
+
+
+
+   } 
 
   Awake(): void {
     //Create canvas 
@@ -20,7 +35,7 @@ export class CanvasApi implements IAwake {
     canvas.setAttribute('height', this._size.y.toString());
 
     //append canvas to body
-    document.body.appendChild(canvas);
+    this._elem.appendChild(canvas);
 
     this._canvas = canvas;
     this._ctx = canvas.getContext('2d')!;
