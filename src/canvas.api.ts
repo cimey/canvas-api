@@ -78,6 +78,7 @@ export class CanvasApi implements IAwake {
   }
 
   public DrawLabel(text: string, position: Vector2D) {
+
     this._ctx.font = '20px Arial';
     this._ctx.fillStyle = '#fff';
     this._ctx.textAlign = 'left';
